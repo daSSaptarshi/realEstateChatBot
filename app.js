@@ -35,13 +35,6 @@ const port = CONFIG.PORT;
 //   });
 
 
-// const testFolder = './tests/';
-const fs = require('fs');
-var pathLong = "";
-fs.readdirSync(__dirname+"/client").forEach(file => {
-  pathLong = pathLong + " *** " +file
-});
-
 if(process.env.NODE_ENV === 'production')
 {
   app.use(express.static(path.resolve(__dirname, "client", "dist")));
@@ -52,4 +45,4 @@ if(process.env.NODE_ENV === 'production')
   });
 }
 
-app.listen(port, () => console.log(`Hello world app listening on port ${pathLong}!`))
+app.listen(port, () => console.log(`Hello world app listening on port ${port}!`))
