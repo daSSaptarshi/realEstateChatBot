@@ -1,0 +1,64 @@
+<!-- <p [hidden] = 'hide'>chat-bot works!</p> -->
+
+<!-- <button (click)="toggleChatBot()">Show</button> -->
+
+
+<div class="chat_bot_container">
+    <!-- <div class="chatbot_header">
+        <div class="bot_details">  LeadBot</div>
+        <div class="close">&#10006;</div>
+    </div> -->
+    <div class="chat_box" id="chat_box">
+        <div class="thread"
+             *ngFor="let item of chats"
+             [ngStyle] = "{'justify-content' : item['actor'] == 'user'? 'flex-end': 'flex-start'}">
+            <!-- <p
+            [ngClass]="{'user_thread' : item['actor'] == 'user', 'bot_thread' : item['actor'] == 'bot'}" 
+            >{{item.text}}</p> -->
+    
+            <div *ngIf="item['actor'] == 'bot'">
+                <div *ngIf="item['actionElement'] == 'text'">
+                    <div *ngFor="let actionItem of item['actionItems']" class="bot_thread">
+                        {{actionItem}}  
+                        <div class="timestamp">
+                            {{item.timeStamp}}
+                        </div>  
+                    </div>
+                    
+                </div>
+                <div class="bot_thread" 
+                    *ngIf="item.text != ''">
+                    {{item.text}}
+                    <div class="timestamp">
+                        {{item.timeStamp}}
+                    </div>
+                </div>
+                <div *ngIf="item['actionElement'] == 'button'" class="button_container">
+                    <button *ngFor="let actionItem of item['actionItems']" class="bot_button" 
+                    (click) = "onClick(actionItem)">
+                        {{actionItem}}    
+                    </button>
+                    
+                </div>
+            </div>
+    
+            <div *ngIf="item['actor'] == 'user'" class="user_thread">
+                {{item.text}}
+                <div class="timestamp">
+                    {{item.timeStamp}}
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    <div class="chat_form">
+        <form (submit)="onSubmit()" [formGroup]="chatForm" *ngIf="isInputRequire && isSessionActive">
+            <input type="text" name="answer" id="answer" formControlName='answer' placeholder="Type your message here">
+            <!-- <input [value] = 'previousQuestion' hidden type="text" name="question" ngModel> -->
+            <button type="submit" name="submit_form" id="submit">
+                <img src="../../assets/images/send.png" alt="">
+            </button>
+        </form>
+    </div>
+</div>
+

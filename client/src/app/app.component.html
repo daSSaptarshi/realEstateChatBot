@@ -1,0 +1,60 @@
+<div class="banner">
+  <div class="banner_bg"></div>
+  <!-- <div class="logo_text"> <span>Shop Home </span></div> -->
+    <div class="logo_subtext"> <span>Buy your dream home</span><br> with us </div>
+</div>
+
+
+<div class="slider_header">Top Properties For Sell</div>
+<div class="slider_container">
+  <!-- <div class="backward button">
+    &#8249;
+  </div>   -->
+
+  
+  <!-- <div class="slides"> -->
+    <div class="slide" *ngFor="let item of sliderProperties, let i=index" style="background: url('../assets/images/slider-{{sliderCurrent+ i+2}}.jpg');">
+      <div class="info">
+        
+        <div class="desc">
+          {{item.desc}}
+        </div>
+        <div class="details">
+          <span>{{item.city}}</span>
+          <span>{{item.type}}</span>
+          <span>{{item.price | currency:'INR'}}</span>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+
+  <!-- <div class="forward button" ngClass="sliderEnd === properties.length-1? 'disabled':none">
+    &#8250;
+  </div> -->
+
+</div>
+
+<div class="form_chatbot_container">
+  <div class="form_container">
+    <div class="form_header">We Got You. <br> Feel free to connect to our agents. </div>
+    <form [formGroup]="queryForm" (ngSubmit) = "sendQuery()">
+      <div>
+        <input type="text" name="firstname" id="firstname" formControlName="firstName" placeholder="First Name">
+        <input type="text" name="lastname" id="lastname" formControlName="lastName" placeholder="Last Name">
+      </div>
+      <div>
+        <input type="text" name="phone" id="phone" placeholder="Phone Number" formControlName="phone">
+        <input type="email" name="email" id="email" placeholder="Email" formControlName="email">
+      </div>
+      <textarea name="query" id="query" placeholder="Enter Query" formControlName="query"></textarea>
+      <input type="submit" value="Get Callback">
+    </form>
+  </div>
+
+  <app-chat-bot *ngIf="isDisabled"></app-chat-bot>
+</div>
+
+<!-- <button (click)="toggleChatBot()">Show / Hide</button> -->
+
+
+
